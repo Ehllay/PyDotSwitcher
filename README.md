@@ -3,17 +3,17 @@ Switch your dotfiles on demand!
 <br><br>
 <a href="./LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-cba6f7.svg"></a>
 </p>
-PConfSwitcher is a Python utility that allows you to easily switch between your dotfiles.
+PyDotSwitcher is a Python utility that allows you to easily switch between your dotfiles.
 
 ## Features
 
 
-- 📋 **Declarable**: PCS will only change between dotfiles YOU declare.
+- 📋 **Declarable**: PDS will only change between dotfiles YOU declare.
 - 📁 **Grouped**: Make a group to change multiple configurations at the same time. Especially useful for changing colorschemes!
-- 🛟  **Safe**: PCS Backs up files before it switches them, and changes to the dotfiles are linked with your current configuration group.
+- 🛟  **Safe**: PDS Backs up files before it switches them, and changes to the dotfiles are linked with your current configuration group.
 - 📜 **Scriptable**: You can also embed shell scripts for doing stuff when changing themes.
 ## Usage
-Out of the box, PCS won't do anything. That is because you have to declare what files you want. 
+Out of the box, PDS won't do anything. That is because you have to declare what files you want. 
 
 But first, a configuration group is needed:
 
