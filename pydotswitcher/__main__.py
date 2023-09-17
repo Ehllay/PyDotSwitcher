@@ -8,6 +8,7 @@ import argparse
 import sys
 
 from .vars import __version__
+from . import copy
 
 
 def main():
@@ -18,20 +19,36 @@ def main():
 def get_args():
     # Get flags
     desc = "Switch up your dotfiles!"
+
     parser = argparse.ArgumentParser(prog="PyDotSwitcher", description=desc)
 
     # Declare Flags
 
     parser.add_argument("-v", action="store_true", help="Show current version")
 
-    parser.add_argument("-n", "--new_group", type=str, help="Create a new group")
-
     parser.add_argument(
-        "-a", "--append", type=str, help="Append a file or directory to a group"
+        "-n",
+        "--new_group",
+        type=str,
+        # action="store",
+        metavar="[group]",
+        help="Create a new group",
     )
 
     parser.add_argument(
-        "-s", "--script", type=str, help="Add a script to the specified group"
+        "-a",
+        "--append",
+        type=str,
+        metavar="[file/dir]",
+        help="Append a file or directory to a group",
+    )
+
+    parser.add_argument(
+        "-s",
+        "--script",
+        type=str,
+        metavar="[group]",
+        help="Add a script to the specified group",
     )
 
     return parser
@@ -39,8 +56,14 @@ def get_args():
 
 def parse(parser):
     args = parser.parse_args()
+
     if args.v:
         print(f"PyDotSwitcher Version: {__version__}")
+        sys.exit()
+
+    if args.new_group:
+        print(f"Creating dotfile group: {args.new_group}")
+        copy.mkgroup(args.new_group)
 
 
 if __name__ == "__main__":

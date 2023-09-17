@@ -1,6 +1,10 @@
+import os
+
 # Versioning
 __version__ = "0.0.1"
 
 # Directories
-CACHE_DIR = "~/.cache/pydotswitcher"
-PDS_DIR = "~/.config/pydotswitcher"
+HOME = os.getenv("HOME", os.getenv("USERPROFILE"))
+
+CACHE_DIR = f"{HOME}/.cache/pydotswitcher"
+PDS_DIR = f"{HOME}/.config/pydotswitcher"
