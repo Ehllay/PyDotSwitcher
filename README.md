@@ -1,6 +1,6 @@
 <p align="center">
 Switch your dotfiles on demand!
-<br>
+<br><br>
 <a href="./LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-cba6f7.svg"></a>
 </p>
 PConfSwitcher is a Python utility that allows you to easily switch between your dotfiles.
