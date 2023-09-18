@@ -6,6 +6,7 @@
 
 import argparse
 import sys
+import os
 
 from .vars import __version__
 from . import copy
@@ -38,8 +39,9 @@ def get_args():
     parser.add_argument(
         "-a",
         "--append",
+        nargs=2,
         type=str,
-        metavar="[file/dir]",
+        metavar="[file/dir], [group]",
         help="Append a file or directory to a group",
     )
 
@@ -57,13 +59,19 @@ def get_args():
 def parse(parser):
     args = parser.parse_args()
 
+    if len(sys.argv) <= 1:
+        parser.print_help()
+        sys.exit()
+
     if args.v:
         print(f"PyDotSwitcher Version: {__version__}")
         sys.exit()
 
     if args.new_group:
-        print(f"Creating dotfile group: {args.new_group}")
         copy.mkgroup(args.new_group)
+
+    if args.append:
+        copy.copy_to_group(*args.append)
 
 
 if __name__ == "__main__":
