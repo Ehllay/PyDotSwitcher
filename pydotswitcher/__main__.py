@@ -6,7 +6,6 @@
 
 import argparse
 import sys
-import os
 
 from .vars import __version__
 from . import copy
@@ -39,7 +38,7 @@ def get_args():
     parser.add_argument(
         "-a",
         "--append",
-        nargs=2,
+        nargs="*",
         type=str,
         metavar="[file/dir], [group]",
         help="Append a file or directory to a group",
@@ -71,7 +70,7 @@ def parse(parser):
         copy.mkgroup(args.new_group)
 
     if args.append:
-        copy.copy_to_group(*args.append)
+        copy.copy_to_group(args.append)
 
 
 if __name__ == "__main__":
