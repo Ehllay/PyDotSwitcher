@@ -17,6 +17,15 @@ def mkgroup(group):
     print(f"Created dotfile group {group}")
 
 
+def gen_path(src, target, index):
+    file = os.path.expanduser(src)
+
+    path = pathlib.Path(file)
+    root = path.parts.index(os.getenv("USER")) + index
+
+    return pathlib.Path(target).joinpath(*path.parts[root:])
+
+
 def copy_to_group(args):
     appends = args[:-1]
     group = args[-1]
@@ -36,12 +45,7 @@ def copy_to_group(args):
             print(f"File '{file}' does not exist")
 
         else:
-            file = os.path.expanduser(file)
-
-            path = pathlib.Path(file)
-            root = path.parts.index(os.getenv("USER")) + 1
-
-            copy_path = pathlib.Path(group_dir).joinpath(*path.parts[root:])
+            copy_path = gen_path(file, group_dir, 1)
 
             try:
                 if os.path.isdir(file):
