@@ -17,6 +17,10 @@ def mkgroup(group):
     print(f"Created dotfile group {group}")
 
 
+def printgroup(group):
+    print(f"{group} group is located at: {PDS_DIR}/{group}")
+
+
 def gen_path(src, target, index):
     file = os.path.expanduser(src)
 

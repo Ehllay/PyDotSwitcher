@@ -30,9 +30,16 @@ def get_args():
         "-n",
         "--new_group",
         type=str,
-        # action="store",
         metavar="[group]",
         help="Create a new group",
+    )
+
+    parser.add_argument(
+        "-p",
+        "--group_path",
+        type=str,
+        metavar="[group]",
+        help="Print group path",
     )
 
     parser.add_argument(
@@ -45,7 +52,7 @@ def get_args():
     )
 
     parser.add_argument(
-        "-s",
+        "-sh",
         "--script",
         type=str,
         metavar="[group]",
@@ -69,8 +76,12 @@ def parse(parser):
     if args.new_group:
         copy.mkgroup(args.new_group)
 
+    if args.group_path:
+        copy.printgroup(args.group_path)
+
     if args.append:
         copy.copy_to_group(args.append)
+        print(len(sys.argv))
 
 
 if __name__ == "__main__":
