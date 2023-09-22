@@ -1,7 +1,6 @@
 # File managment
 
 import os
-from os.path import isdir
 import sys
 import pathlib
 import shutil
@@ -48,7 +47,7 @@ def copy_to_group(args):
                 if os.path.isdir(file):
                     shutil.copytree(file, copy_path)
                 else:
-                    os.makedirs(os.path.dirname(copy_path))
+                    create_dir(os.path.dirname(copy_path))
                     shutil.copy(file, copy_path)
             except FileExistsError:
                 print(f"'{file}' already exists in group, skipping")
