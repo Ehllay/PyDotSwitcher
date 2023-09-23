@@ -98,6 +98,9 @@ def parse(parser):
 
         switch.switch(args.switch)
 
+    if args.script:
+        copy.mkscript(args.script)
+
 
 if __name__ == "__main__":
     main()

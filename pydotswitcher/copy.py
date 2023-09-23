@@ -17,8 +17,23 @@ def mkgroup(group):
     print(f"Created dotfile group {group}")
 
 
+def check_group(group):
+    group_dir = os.path.join(GRP_DIR, group)
+
+    if not os.path.isdir(group_dir):
+        confirmation = input("Group does not exist! Create it? (y/N): ")
+        if confirmation.lower() == "y" or "yes":
+            mkgroup(group)
+        else:
+            sys.exit()
+
+    return group_dir
+
+
 def printgroup(group):
-    print(f"{group} group is located at: {GRP_DIR}/{group}")
+    group_dir = check_group(group)
+
+    print(f"{group} group is located at: {group_dir}")
 
 
 def gen_path(src, target, index):
@@ -34,15 +49,11 @@ def copy_to_group(args):
     appends = args[:-1]
     group = args[-1]
 
-    group_dir = os.path.join(GRP_DIR, group)
+    group_dir = check_group(group)
 
     for file in appends:
         if file[0] == ".":
             print("Only absolute paths allowed (try with '~' or '/home/user')")
-            sys.exit()
-
-        if not os.path.isdir(group_dir):
-            print(f"Group {group} does not exist")
             sys.exit()
 
         if not os.path.exists(file):
@@ -61,3 +72,27 @@ def copy_to_group(args):
                 print(f"'{file}' already exists in group, skipping")
             else:
                 print(f"Copied {file} to {group}")
+
+
+def mkscript(group):
+    group_dir = check_group(group)
+
+    # Script template
+    script = """#!/bin/bash
+
+# Your commands go here
+
+# Example:
+# echo "Hi"
+"""
+
+    script_path = os.path.join(group_dir, "script.sh")
+
+    if os.path.exists(script_path):
+        print("Script already exists, exiting")
+        sys.exit()
+
+    with open(script_path, "w") as script_file:
+        script_file.write(script)
+
+    print(f"Script created at {script_path}")

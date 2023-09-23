@@ -1,6 +1,7 @@
 # Switch it up!
 
 import datetime
+import sys
 import os
 import shutil
 
@@ -46,10 +47,12 @@ def backup(group):
 
 
 def switch(group):
+    group_dir = os.path.join(GRP_DIR, group)
+
+    # TODO: abort if no dotfiles are present
+
     print("Time to switch it up!")
     backup(group)
-
-    group_dir = os.path.join(GRP_DIR, group)
 
     count = 0
 
@@ -60,7 +63,8 @@ def switch(group):
 
             home_file = os.path.join(HOME, rel_path)
 
-            shutil.copy2(group_file, home_file)
-            count += 1
+            if not group_file.endswith(".sh"):
+                shutil.copy2(group_file, home_file)
+                count += 1
 
     print(f"{count} dotfile(s) switched to {group}!")
