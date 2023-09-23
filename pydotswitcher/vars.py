@@ -10,5 +10,5 @@ CACHE_DIR = f"{HOME}/.cache/pydotswitcher"
 GRP_DIR = f"{HOME}/.config/pydotswitcher/groups"
 
 # Backup
-BACKUP_DIR = f"{HOME}/.config/pydotswitcher/backups/"
+BACKUP_DIR = f"{HOME}/.config/pydotswitcher/backups"
 MAX_BACKUPS = 3

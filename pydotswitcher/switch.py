@@ -21,6 +21,7 @@ def check_backup_dirs():
     if len(backups) > MAX_BACKUPS:
         shutil.rmtree(f"{BACKUP_DIR}/{sorted(backups)[0]}")
 
+    print("Backup created at", backup_dir)
     return backup_dir
 
 
@@ -41,8 +42,25 @@ def backup(group):
                     shutil.copytree(home_file, backup_file, dirs_exist_ok=True)
                 else:
                     create_dir(os.path.dirname(backup_file))
-                    shutil.copy(home_file, backup_file)
+                    shutil.copy2(home_file, backup_file)
 
 
 def switch(group):
+    print("Time to switch it up!")
     backup(group)
+
+    group_dir = os.path.join(GRP_DIR, group)
+
+    count = 0
+
+    for dir, _, files in os.walk(group_dir):
+        for file in files:
+            group_file = os.path.join(dir, file)
+            rel_path = os.path.relpath(group_file, group_dir)
+
+            home_file = os.path.join(HOME, rel_path)
+
+            shutil.copy2(group_file, home_file)
+            count += 1
+
+    print(f"{count} dotfile(s) switched to {group}!")
