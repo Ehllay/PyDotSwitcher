@@ -5,7 +5,7 @@ import sys
 import pathlib
 import shutil
 
-from .vars import PDS_DIR
+from .vars import GRP_DIR
 
 
 def create_dir(dir):
@@ -13,12 +13,12 @@ def create_dir(dir):
 
 
 def mkgroup(group):
-    create_dir(f"{PDS_DIR}/{group}")
+    create_dir(f"{GRP_DIR}/{group}")
     print(f"Created dotfile group {group}")
 
 
 def printgroup(group):
-    print(f"{group} group is located at: {PDS_DIR}/{group}")
+    print(f"{group} group is located at: {GRP_DIR}/{group}")
 
 
 def gen_path(src, target, index):
@@ -34,7 +34,7 @@ def copy_to_group(args):
     appends = args[:-1]
     group = args[-1]
 
-    group_dir = os.path.join(PDS_DIR, group)
+    group_dir = os.path.join(GRP_DIR, group)
 
     for file in appends:
         if file[0] == ".":

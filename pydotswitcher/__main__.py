@@ -9,6 +9,7 @@ import sys
 
 from .vars import __version__
 from . import copy
+import pydotswitcher
 
 
 def main():
@@ -80,8 +81,11 @@ def parse(parser):
         copy.printgroup(args.group_path)
 
     if args.append:
+        if len(sys.argv) <= 3:
+            print("Specify a file/group to append")
+            sys.exit()
+
         copy.copy_to_group(args.append)
-        print(len(sys.argv))
 
 
 if __name__ == "__main__":
