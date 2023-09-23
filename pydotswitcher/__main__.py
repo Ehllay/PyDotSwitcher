@@ -9,7 +9,7 @@ import sys
 
 from .vars import __version__
 from . import copy
-import pydotswitcher
+from . import switch
 
 
 def main():
@@ -53,6 +53,10 @@ def get_args():
     )
 
     parser.add_argument(
+        "-sw", "--switch", type=str, metavar="[group]", help="Switch dotfiles to group"
+    )
+
+    parser.add_argument(
         "-sh",
         "--script",
         type=str,
@@ -86,6 +90,13 @@ def parse(parser):
             sys.exit()
 
         copy.copy_to_group(args.append)
+
+    if args.switch:
+        if len(sys.argv) >= 4:
+            print("Too many arguments")
+            sys.exit()
+
+        switch.switch(args.switch)
 
 
 if __name__ == "__main__":
