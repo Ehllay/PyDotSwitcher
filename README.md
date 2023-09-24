@@ -18,6 +18,7 @@ Install using PIP:
 `pip install pydotswitcher` or 'python -m pip install pydotswitcher'
 
 For Arch Linux users, wait until I package this
+
 [comment]: <For Arch Linux users, install the `python-pydotswitcher` package>
 
 ## Usage
