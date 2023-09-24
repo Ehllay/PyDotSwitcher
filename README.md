@@ -17,7 +17,8 @@ PyDotSwitcher is a Python utility that allows you to easily switch between your 
 Install using PIP:
 `pip install pydotswitcher` or 'python -m pip install pydotswitcher'
 
-For Arch Linux users, install the `python-pydotswitcher` package
+For Arch Linux users, wait until I package this
+[comment]: <For Arch Linux users, install the `python-pydotswitcher` package>
 
 ## Usage
 
