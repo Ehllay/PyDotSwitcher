@@ -4,6 +4,7 @@ import datetime
 import sys
 import os
 import shutil
+import subprocess
 
 from .vars import HOME, GRP_DIR, BACKUP_DIR, MAX_BACKUPS
 from .copy import create_dir
@@ -48,8 +49,14 @@ def backup(group):
 
 def switch(group):
     group_dir = os.path.join(GRP_DIR, group)
+    list_grp = os.listdir(group_dir)
+    for i in list_grp:
+        if i.endswith("script.sh"):
+            list_grp.remove(i)
 
-    # TODO: abort if no dotfiles are present
+    if len(list_grp) == 0:
+        print("No dotfiles to copy, aborting")
+        sys.exit()
 
     print("Time to switch it up!")
     backup(group)
@@ -63,8 +70,10 @@ def switch(group):
 
             home_file = os.path.join(HOME, rel_path)
 
-            if not group_file.endswith(".sh"):
+            if not group_file.endswith("script.sh"):
                 shutil.copy2(group_file, home_file)
                 count += 1
+            else:
+                subprocess.call(["sh", group_file])
 
     print(f"{count} dotfile(s) switched to {group}!")
