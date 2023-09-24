@@ -1,2 +1,4 @@
+build
 pds_venv
+pydotswitcher.egg-info
 **/pydotswitcher/__pycache__/
